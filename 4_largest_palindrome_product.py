@@ -18,16 +18,17 @@ def largest_palindrome_product():
 
         return True if n == rev else False
 
-    product = 1
+    product = None
+    list_of_products = []
     for i in range(999, 99, -1):
         for j in range(999, 99, -1):
             product = i * j
             if is_palindrome(product):
-                return product
+                list_of_products.append(product)
 
-    return product
+    return max(list_of_products)
 
 
 if __name__ == '__main__':
-    # 580085
+    # 906609
     print("largest Palindrom Product: ", largest_palindrome_product())

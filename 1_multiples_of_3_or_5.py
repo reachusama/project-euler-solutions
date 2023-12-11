@@ -16,4 +16,4 @@ def multiples_of_3and5(numbers):
 
 
 if __name__ == '__main__':
-    print(multiples_of_3and5([3, 5, 15, 10, 2, 4, 8, 20]))
+    print(multiples_of_3and5(range(1, 1000)))
