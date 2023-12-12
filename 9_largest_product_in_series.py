@@ -1,3 +1,5 @@
+import numpy as np
+
 SERIES = """
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -26,7 +28,7 @@ def string_to_array(s):
     s = s.strip().split()
     array = []
     for row in s:
-        array.append([d for d in row])
+        array.append([int(d) for d in row])
     return array
 
 
@@ -37,16 +39,22 @@ def main():
     Steps:
     - Convert string to 2-d array
     - Traverse the array, Consider the Nth index as the Vertex.
-    - Find N adjacent angles on that Vertex
-    - Find the product of the adjacent angles
-    - Check the product with the Last Max Product, Replace if current is Largest.
+
 
     :return:
     """
     nd_array = string_to_array(SERIES)
-    for row in nd_array:
-        for col in row:
-            pass
+    n_digits = 4
+    max_prod = -1
+    for row in range(len(nd_array)):
+        for col in range(len(nd_array[row])):
+            sub_array = nd_array[row][col: col + n_digits]
+            if len(sub_array) == n_digits:
+                sub_prod = np.prod(sub_array)
+                if sub_prod > max_prod:
+                    max_prod = sub_prod
+
+    print(max_prod)
 
 
 if __name__ == '__main__':
