@@ -25,36 +25,24 @@ SERIES = """
 
 
 def string_to_array(s):
-    s = s.strip().split()
-    array = []
-    for row in s:
-        array.append([int(d) for d in row])
-    return array
+    s = s.replace("\n", "").strip()
+    return [int(d) for d in s]
 
 
 def main():
-    """
-    Find the N number of digits that compose the largest Product in the series
-
-    Steps:
-    - Convert string to 2-d array
-    - Traverse the array, Consider the Nth index as the Vertex.
-
-
-    :return:
-    """
     nd_array = string_to_array(SERIES)
     n_digits = 13
     max_prod = -1
-    for row in range(len(nd_array)):
-        for col in range(len(nd_array[row])):
-            sub_array = nd_array[row][col: col + n_digits]
-            if len(sub_array) == n_digits:
-                sub_prod = np.prod(sub_array)
-                if sub_prod > max_prod:
-                    max_prod = sub_prod
+    max_prod_array = []
+    for i in range(len(nd_array) - n_digits + 1):
+        sub_array = nd_array[i: i + n_digits]
+        sub_prod = np.prod(sub_array)
+        if sub_prod > max_prod:
+            max_prod = sub_prod
+            max_prod_array = sub_array
 
     print(max_prod)
+    print(max_prod_array)
 
 
 if __name__ == '__main__':
