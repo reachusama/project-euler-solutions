@@ -41,7 +41,7 @@ def main():
     - Convert the GRID into List.
     - Search by Row - Side by Side
     - Search by Columns - Up Down
-    - Search Diagonally
+    - Search Diagonally (row - 1, col - 1), (row - 1, col + 1), (row + 1, col - 1), (row + 1, col + 1)
     :return:
     """
     grid = convert_to_list(GRID)
@@ -63,7 +63,16 @@ def main():
             if product > max_prod:
                 max_prod = product
 
-    print(max_prod)
+    for i in range(window, len(grid)):
+        for j in range(window, len(grid[i])):
+            # Explore all four directions, check product, if max, replace it
+
+            prod = 1
+            # row - 1, col -1
+            for threshold in range(window):
+                prod = prod * grid[i - threshold][j - threshold]
+
+            # TODO: Run for now, USAMA, just implement for all directions and compare products from different directions
 
 
 if __name__ == '__main__':
