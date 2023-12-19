@@ -53,6 +53,8 @@ def main():
             if product > max_prod:
                 max_prod = product
 
+    print(max_prod)
+
     for col in range(0, len(grid)):
         for i in range(0, len(grid) - window + 1):
             sub_col = []
@@ -63,16 +65,43 @@ def main():
             if product > max_prod:
                 max_prod = product
 
-    for i in range(window, len(grid)):
-        for j in range(window, len(grid[i])):
-            # Explore all four directions, check product, if max, replace it
+    print(max_prod)
 
+    for i in range(window, len(grid) - window):
+        for j in range(window, len(grid[i]) - window):
             prod = 1
             # row - 1, col -1
             for threshold in range(window):
                 prod = prod * grid[i - threshold][j - threshold]
 
-            # TODO: Run for now, USAMA, just implement for all directions and compare products from different directions
+            if prod > max_prod:
+                max_prod = prod
+
+            prod = 1
+            # row - 1, col + 1
+            for threshold in range(window):
+                prod = prod * grid[i - threshold][j + threshold]
+
+            if prod > max_prod:
+                max_prod = prod
+
+            prod = 1
+            # row + 1, col - 1
+            for threshold in range(window):
+                prod = prod * grid[i + threshold][j - threshold]
+
+            if prod > max_prod:
+                max_prod = prod
+
+            prod = 1
+            # row + 1, col + 1
+            for threshold in range(window):
+                prod = prod * grid[i + threshold][j + threshold]
+
+            if prod > max_prod:
+                max_prod = prod
+
+    print(max_prod)
 
 
 if __name__ == '__main__':
