@@ -44,7 +44,7 @@ def main():
     :return:
     """
     nd_array = string_to_array(SERIES)
-    n_digits = 4
+    n_digits = 13
     max_prod = -1
     for row in range(len(nd_array)):
         for col in range(len(nd_array[row])):
