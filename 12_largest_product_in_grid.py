@@ -1,6 +1,7 @@
 """
 https://projecteuler.net/problem=11
 """
+import numpy
 
 GRID = """
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -44,6 +45,25 @@ def main():
     :return:
     """
     grid = convert_to_list(GRID)
+    window = 4
+    max_prod = 1
+    for row in grid:
+        for j in range(0, len(row) - window + 1):
+            product = numpy.prod(row[j: j + window])
+            if product > max_prod:
+                max_prod = product
+
+    for col in range(0, len(grid)):
+        for i in range(0, len(grid) - window + 1):
+            sub_col = []
+            for k in range(i, i + window):
+                sub_col.append(grid[k][col])
+
+            product = numpy.prod(sub_col)
+            if product > max_prod:
+                max_prod = product
+
+    print(max_prod)
 
 
 if __name__ == '__main__':
